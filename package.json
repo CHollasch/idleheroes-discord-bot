@@ -1,0 +1,24 @@
+{
+  "name": "idleheroesbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/main.js",
+  "scripts": {
+    "dev": "node app/main.js"
+  },
+  "engines": {
+    "node": ">=11"
+  },
+  "author": "IModZombies4Fun",
+  "license": "ISC",
+  "dependencies": {
+    "color-blend": "^2.0.4",
+    "discord.js": "^11.4.2",
+    "fuzzball": "^1.2.0",
+    "node-schedule": "^1.3.2",
+    "pngjs": "^3.4.0",
+    "pureimage": "^0.1.6",
+    "stream-buffers": "^3.0.2",
+    "uint32": "^0.2.1"
+  }
+}

@@ -1,0 +1,10 @@
+node_modules
+
+config.js
+
+package-lock.json
+
+*.jar
+*.apk
+
+.idea/
