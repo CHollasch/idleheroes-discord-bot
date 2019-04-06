@@ -4,8 +4,8 @@ const PI = require('pureimage');
 const {normal} = require('color-blend');
 const uint32 = require('uint32');
 
-const {lookupAura} = require('../heroes');
-const {lookupArtifact} = require('../artifacts');
+const {lookupAura, getAuraDetails} = require('./heroes');
+const {lookupArtifact} = require('./artifacts');
 
 let fontLoaded = false;
 
@@ -243,7 +243,7 @@ async function drawHeroInDepth(hero, slot, bake = true) {
 
     await loadFont();
     ctx.font = "18pt Idle Heroes";
-    ctx.fillStyle = '#FA8E1A';
+    ctx.fillStyle = '#FFFFFF';
 
     const stoneParts = build.stone.split(/ ?\/ ?/);
 
@@ -269,7 +269,12 @@ async function drawHeroInDepth(hero, slot, bake = true) {
     }
 }
 
-async function generateDetailedLineupImage(heroesWithSlots) {
+async function generateDetailedLineupImage(heroesWithSlots, options = {
+    overlay: true,
+    background: true,
+    confidence: false,
+    aura: true,
+}) {
     const slotmap = [
         [846, 0],
         [423, 0],
@@ -281,28 +286,69 @@ async function generateDetailedLineupImage(heroesWithSlots) {
 
     const auraLoc = [0, 0];
 
-    const bg = await readImage('./assets/heroDetailedLineupBackground.png');
-
     const image = PI.make(1692, 650, {});
     const ctx = image.getContext();
 
-    ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, image.width, image.height);
+    if (options.background) {
+        const bg = await readImage('./assets/heroDetailedLineupBackground.png');
+        ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, image.width, image.height);
+    }
 
-    for (const data of heroesWithSlots) {
+    const filled = [];
+    for (let i = 0; i < 6; ++i) {
+        filled.push({hero: null, slot: (i + 1)});
+    }
+
+    for (let data of heroesWithSlots) {
+        if (!data) {
+            continue;
+        }
+
+        filled[data.slot - 1] = data;
+    }
+
+    for (const data of filled) {
         const hero = data.hero;
         const slot = data.slot;
+        const confidence = data.confidence;
 
-        const render = await drawHeroInDepth(hero, slot, false);
+        let render;
+        if (!hero) {
+            render = await readImage('./assets/heroDetailsDisplay.png');
+        } else {
+            render = await drawHeroInDepth(hero, slot, false);
+        }
+
         const pos = slotmap[slot - 1];
-
         alphaDrawImage(ctx, render, pos[0], pos[1], render.width, render.height);
+
+        if (options.confidence) {
+            const style = `rgba(${(255 - (confidence * 255))},${confidence * 255},0,1)`;
+            ctx.strokeStyle = style;
+
+            for (let i = 5; i < 10; ++i) {
+                ctx.strokeRect(pos[0] + i, pos[1] + i, render.width - (i * 2), render.height - (i * 2));
+            }
+
+            ctx.font = '16pt "Idle Heroes"';
+            ctx.fillStyle = style;
+            ctx.fillText(confidence.toFixed(2) + '/1.0', pos[0] + 25, pos[1] + render.height - 15);
+        }
     }
 
     const aura = lookupAura(heroesWithSlots.map(hero => hero.hero));
 
-    if (aura !== null) {
+    if (aura !== null && options.aura) {
         const auraImage = await readImage(`./assets/auras/details/${aura}.png`);
         alphaDrawImage(ctx, auraImage, auraLoc[0], auraLoc[1], auraImage.width * 0.6, auraImage.height * 0.6);
+
+        if (options.overlay) {
+            const auraDetails = getAuraDetails(aura);
+            if (auraDetails.overlay) {
+                const auraOverlay = await readImage(`./assets/auras/details/${auraDetails.overlay}`);
+                alphaDrawImage(ctx, auraOverlay, 0, 0, image.width, image.height);
+            }
+        }
     }
 
     try {

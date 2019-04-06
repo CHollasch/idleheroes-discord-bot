@@ -1,9 +1,9 @@
 const {lookupArtifact} = require('../../artifacts');
-const {generateArtifactDetails} = require('../../image/idlecanvas');
+const {generateArtifactDetails} = require('../../idlecanvas');
 
 function check(artifact, channel) {
     if (artifact.flagged) {
-        channel.send(`No such artifact, did you mean '*${artifact.name}*'?`);
+        channel.send(`I'm unsure of that... did you mean '*${artifact.name}*'?`);
         return false;
     }
 
@@ -32,7 +32,7 @@ async function lookup(channel, scope) {
         const a1 = lookupArtifact(both[0]), a2 = lookupArtifact(both[1]);
 
         if (!a1 || !a2) {
-            channel.send(`No such artifact, ${both[0]} or ${both[1]}`);
+            channel.send(`I don't know what one of these is, ${both[0]} or ${both[1]}`);
             return;
         }
 

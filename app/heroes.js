@@ -924,7 +924,7 @@ const heroes = {
                 {
                     stone: 'HP / HP (%)',
                     artifact: ['Fearless Armor', 'Runes Power', 'Mirror Chain', 'Oaks Heart'],
-                    slot: [1, 3],
+                    slot: [3, 1],
                     weight: 289
                 },
                 {
@@ -1329,24 +1329,26 @@ const heroes = {
     }
 };
 
+const factions = ['shadow', 'abyss', 'dark', 'light', 'forest', 'fortress'];
+
 const auras = {
-    shadow: {shadow: 6, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0},
-    abyss: {shadow: 0, abyss: 6, dark: 0, light: 0, forest: 0, fortress: 0},
-    dark: {shadow: 0, abyss: 0, dark: 6, light: 0, forest: 0, fortress: 0},
-    light: {shadow: 0, abyss: 0, dark: 0, light: 6, forest: 0, fortress: 0},
-    forest: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 6, fortress: 0},
-    fortress: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 6},
-    ruin: {shadow: 2, abyss: 2, dark: 2, light: 0, forest: 0, fortress: 0},
-    redemption: {shadow: 0, abyss: 0, dark: 0, light: 2, forest: 2, fortress: 2},
-    rainbow: {shadow: 1, abyss: 1, dark: 1, light: 1, forest: 1, fortress: 1},
-    evil: {shadow: 3, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 0},
-    justice: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 3},
-    goodVsEvil: {shadow: 0, abyss: 0, dark: 3, light: 3, forest: 0, fortress: 0},
-    pollution: {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 3, fortress: 0},
-    boundSoul: {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 3},
-    oldEnemy: {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 3},
-    lifeVsDeath: {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 0},
-    none: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0}
+    shadow:         {shadow: 6, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    abyss:          {shadow: 0, abyss: 6, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'abyssOverlay.png'},
+    dark:           {shadow: 0, abyss: 0, dark: 6, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    light:          {shadow: 0, abyss: 0, dark: 0, light: 6, forest: 0, fortress: 0, overlay: 'lightOverlay.png'},
+    forest:         {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 6, fortress: 0, overlay: 'forestOverlay.png'},
+    fortress:       {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 6, overlay: undefined},
+    ruin:           {shadow: 2, abyss: 2, dark: 2, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    redemption:     {shadow: 0, abyss: 0, dark: 0, light: 2, forest: 2, fortress: 2, overlay: undefined},
+    rainbow:        {shadow: 1, abyss: 1, dark: 1, light: 1, forest: 1, fortress: 1, overlay: 'rainbowOverlay.png'},
+    evil:           {shadow: 3, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    justice:        {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 3, overlay: undefined},
+    goodVsEvil:     {shadow: 0, abyss: 0, dark: 3, light: 3, forest: 0, fortress: 0, overlay: undefined},
+    pollution:      {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 3, fortress: 0, overlay: undefined},
+    boundSoul:      {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 3, overlay: undefined},
+    oldEnemy:       {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 3, overlay: undefined},
+    lifeVsDeath:    {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 0, overlay: undefined},
+    none:           {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0, overlay: undefined}
 };
 
 function lookupHero(hero) {
@@ -1359,7 +1361,14 @@ function lookupHero(hero) {
 
     for (const faction of Object.keys(heroes)) {
         for (const heroName of Object.keys(heroes[faction])) {
-            possible.push(heroes[faction][heroName].name);
+            const heroNameFriendly = heroes[faction][heroName].name;
+
+            // Quick resolve, no fuzzy overhead.
+            if (heroNameFriendly === hero) {
+                return {hero: heroes[faction][heroName], flagged: false, score: 100};
+            }
+
+            possible.push(heroNameFriendly);
         }
     }
 
@@ -1386,6 +1395,10 @@ function lookupHero(hero) {
     return null;
 }
 
+function getAuraDetails(aura) {
+    return auras[aura];
+}
+
 function lookupAura(heroes) {
     auraLoop: for (const auraKey in auras) {
         const aura = auras[auraKey];
@@ -1400,7 +1413,7 @@ function lookupAura(heroes) {
             determinant[faction]--;
         }
 
-        for (const key in determinant) {
+        for (const key of factions) {
             const val = determinant[key];
 
             if (val !== 0) {
@@ -1419,4 +1432,5 @@ module.exports = {
     auras,
     lookupHero,
     lookupAura,
+    getAuraDetails
 };

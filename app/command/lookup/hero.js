@@ -25,7 +25,7 @@ function lookup(channel, scope) {
     const raw = lookupHero(scope.join(' '));
 
     if (raw.flagged) {
-        channel.send(`No such hero. Did you mean '*${raw.hero.name}*'?`);
+        channel.send(`I'm unsure of that... Did you mean '*${raw.hero.name}*'?`);
         return;
     }
 
