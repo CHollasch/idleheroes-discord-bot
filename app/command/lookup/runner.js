@@ -2,11 +2,13 @@ const types = {
     ...require('./hero'),
     ...require('./tier'),
     ...require('./vip'),
-    ...require('./artifact')
+    ...require('./artifact'),
+    ...require('./aura'),
+    ...require('./event')
 };
 
 function getSub(name) {
-    for (const cmd in types) {
+    for (const cmd of Object.keys(types)) {
         const val = types[cmd];
 
         if (val.aliases.includes(name)) {
@@ -17,7 +19,7 @@ function getSub(name) {
 
 function command(client, msg) {
     const channel = msg.channel;
-    const argv = msg.content.split(/ /);
+    const argv = msg.content.split(/ /g);
 
     if (argv.length < 3) {
         channel.send('Needs lookup mode. Types ``(hero/tier/vip/event/artifact/aura/guildboss/gear/skin/stone/brokenspace)``');

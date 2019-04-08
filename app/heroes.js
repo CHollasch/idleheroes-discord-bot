@@ -1,5 +1,3 @@
-const fuzz = require('fuzzball');
-
 const heroes = {
     shadow: {
         aidan: {
@@ -459,7 +457,7 @@ const heroes = {
                     weight: 10
                 },
                 {
-                    stone: ['Speed / HP (%)'],
+                    stone: 'Speed / HP (%)',
                     artifact: ['Demon Bell'],
                     slot: [1, 3],
                     weight: 5
@@ -778,10 +776,16 @@ const heroes = {
             tier: 2,
             builds: [
                 {
+                    stone: 'Attack (%) / Crit (%) / Crit Dmg (%)',
+                    artifact: ['Fearless Armor', 'Runes Power', 'Mirror Chain', 'Oaks Heart'],
+                    slot: [2],
+                    weight: 9
+                },
+                {
                     stone: 'HP (%) / Crit (%)',
                     artifact: ['Magic Stone Sword'],
                     slot: [1],
-                    weight: 12
+                    weight: 8
                 },
                 {
                     stone: 'Precision (%) / Skill Dmg (%)',
@@ -829,6 +833,22 @@ const heroes = {
                 }
             ]
         },
+        oberon: {
+            name: 'Oberon',
+            faction: 'forest',
+            role: 'Mage',
+            pve: 6.2,
+            pvp: 4.3,
+            tier: 3,
+            builds: [
+                {
+                    stone: 'Attack / Attack (%)',
+                    artifact: ['Magic Stone Sword'],
+                    slot: [3],
+                    weight: 1
+                }
+            ]
+        }
     },
     fortress: {
         bleecker: {
@@ -838,7 +858,7 @@ const heroes = {
             pve: 2.0,
             pvp: 2.6,
             tier: -1,
-            build: [
+            builds: [
                 {
                     stone: 'HP (%) / Block (%)',
                     artifact: ['Invisible', 'Talisman of Evasion'],
@@ -1357,37 +1377,14 @@ function lookupHero(hero) {
     }
 
     hero = hero.toLowerCase();
-    const possible = [];
 
     for (const faction of Object.keys(heroes)) {
         for (const heroName of Object.keys(heroes[faction])) {
-            const heroNameFriendly = heroes[faction][heroName].name;
+            const heroNameFriendly = heroes[faction][heroName].name.toLowerCase();
 
             // Quick resolve, no fuzzy overhead.
-            if (heroNameFriendly === hero) {
-                return {hero: heroes[faction][heroName], flagged: false, score: 100};
-            }
-
-            possible.push(heroNameFriendly);
-        }
-    }
-
-    const results = fuzz.extract(hero, possible, {wildcards: '*'});
-
-    if (results.length > 0) {
-        const best = results[0];
-
-        const score = best[1];
-        const bestByName = best[0];
-        let flagged = score < 60;
-
-        for (const faction of Object.keys(heroes)) {
-            for (const heroName of Object.keys(heroes[faction])) {
-                const hero = heroes[faction][heroName];
-
-                if (hero.name === bestByName) {
-                    return {hero, flagged, score};
-                }
+            if (heroNameFriendly === hero || heroName === hero) {
+                return {...heroes[faction][heroName], label: heroName};
             }
         }
     }

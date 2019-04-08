@@ -1,4 +1,5 @@
 const {RichEmbed} = require('discord.js');
+const lookupSimple = require('../../middleware/lookupsimple');
 
 const {lookupHero} = require('../../heroes');
 const {findHeroName} = require('../../translations');
@@ -16,20 +17,8 @@ function buildField(heroBase) {
     ];
 }
 
-function lookup(channel, scope) {
-    if (scope.length === 0) {
-        channel.send('No hero specified.');
-        return;
-    }
-
-    const raw = lookupHero(scope.join(' '));
-
-    if (raw.flagged) {
-        channel.send(`I'm unsure of that... Did you mean '*${raw.hero.name}*'?`);
-        return;
-    }
-
-    const hero = raw.hero;
+function lookup(channel, scope, raw) {
+    const hero = lookupHero(raw.found);
 
     if (!hero.builds || !hero.level) {
         channel.send(`There are no statistics for **${hero.name}** yet.`);
@@ -58,6 +47,8 @@ function lookup(channel, scope) {
 module.exports = {
     hero: {
         aliases: ['hero', 'heroes', 'h', 'herostats', 'hstats', 'character', 'player'],
-        command: lookup
+        command: (channel, scope) => lookupSimple(
+            channel, scope, 'hero', findHeroName, (item => lookup(channel, scope, item))
+        )
     }
 };

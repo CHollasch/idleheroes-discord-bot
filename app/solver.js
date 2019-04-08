@@ -1,4 +1,30 @@
 const {lookupHero} = require('./heroes');
+const NodeCache = require('node-cache');
+
+const MAX_SOLVER_TEAM_COUNT = 1000;
+const solverCache = new NodeCache({
+    stdTTL: 60 * 10, // 10 minute TTL
+    checkperiod: 60
+});
+
+function step0DoSolverCache(team, solution = undefined) {
+    // Generate unique key for teams, hero order doesn't matter.
+    const teamKey = team.map(hero => hero.name).sort((a, b) => a.localeCompare(b)).join(',');
+
+    // Do we put into the cache or check if the cache contains?
+    if (solution) {
+        solverCache.set(teamKey, solution);
+    } else {
+        // Look for cache hit from previous solutions.
+        const cached = solverCache.get(teamKey);
+
+        if (cached) {
+            return cached;
+        }
+
+        return undefined;
+    }
+}
 
 function step1BuildTeamSpace(team) {
     const heroes = [];
@@ -26,6 +52,7 @@ function step1BuildTeamSpace(team) {
         heroes.push({
             weight: (hero.pvp + hero.pve) / 2.0,
             hero: hero.name,
+            starCount: hero.starCount === undefined ? 5 : hero.starCount,
             allSlots,
             uid: uid++
         });
@@ -37,11 +64,16 @@ function step1BuildTeamSpace(team) {
     return heroes;
 }
 
-function step2SolvePossibleTeams(heroes) {
+function step2SolvePossibleTeams(heroes, maxSolveCount) {
     // Construct a collection of potential solutions.
     const solutions = [];
 
     function solveSpace(hero, heroes, lineup) {
+        // Prevent massive amounts of possible teams.
+        if (solutions.length > maxSolveCount) {
+            return;
+        }
+
         const slots = hero.allSlots;
 
         // Find a slot for the hero in question.
@@ -65,9 +97,10 @@ function step2SolvePossibleTeams(heroes) {
             return;
         }
 
-        // Keep solving with next hero.
-        const nextHero = heroes[0];
-        solveSpace(nextHero, heroes, [...lineup]);
+        // Keep solving with the rest of the heroes.
+        for (const hero of heroes) {
+            solveSpace(hero, heroes, [...lineup]);
+        }
     }
 
     // Populate solution space for first few heroes.
@@ -118,7 +151,7 @@ function step4BuildConfidenceAndSolverScores(solution) {
             continue;
         }
 
-        const hero = lookupHero(solved.hero).hero;
+        const hero = lookupHero(solved.hero);
         const slot = solved.solvedSlot;
 
         // Find the build that we used (ranked by the highest scoring slot in builds by weight).
@@ -137,7 +170,7 @@ function step4BuildConfidenceAndSolverScores(solution) {
         if (!buildUsed) {
             solved.confidence = 0;
         } else {
-            solved.confidence = buildUsed.weight / totalBuildWeight;
+            solved.confidence = (1 + (buildUsed.weight / totalBuildWeight)) / 2.0;
         }
 
         // Used to average confidence as overall score.
@@ -169,23 +202,58 @@ function step5SelectWinningTeam(solutions) {
 }
 
 function solve(team) {
-    // Build problem space and run optimizations.
-    let heroes = step1BuildTeamSpace(team);
-    let solutions = step2SolvePossibleTeams(heroes);
+    let time = new Date().getTime();
+    let winningTeam = step0DoSolverCache(team);
 
-    // No solutions? Default as given team.
-    if (solutions.length === 0) {
-        return step2NoSolutionDefault(heroes);
+    if (!winningTeam) {
+        console.log(`Team solver starting...`);
+
+        // Build problem space and run optimizations.
+        let heroes = step1BuildTeamSpace(team);
+
+        // Some heroes have no builds?
+        if (!heroes) {
+            return null;
+        }
+
+        let solutions = step2SolvePossibleTeams(heroes, MAX_SOLVER_TEAM_COUNT);
+
+        // No solutions? Default as given team.
+        if (solutions.length === 0) {
+            return step2NoSolutionDefault(heroes);
+        }
+
+        // Fill in the heroes that didn't get placed due to no slots found.
+        solutions.forEach(solution => step3FillMissingSlots(solution, heroes));
+
+        // Rank all solutions.
+        solutions = solutions.map(solution => step4BuildConfidenceAndSolverScores(solution));
+
+        // Select highest team by solver score.
+        winningTeam = step5SelectWinningTeam(solutions);
+
+        // Update cache.
+        step0DoSolverCache(team, winningTeam);
+
+        time = new Date().getTime() - time;
+        console.log(`Solver took ${time} milliseconds to generate an optimal solution. Found ${solutions.length} possible teams.`);
+    } else {
+        console.log('Solver used previous solution in cache.');
     }
 
-    // Fill in the heroes that didn't get placed due to no slots found.
-    solutions.forEach(solution => step3FillMissingSlots(solution, heroes));
+    return winningTeam;
+}
 
-    // Rank all solutions.
-    solutions = solutions.map(solution => step4BuildConfidenceAndSolverScores(solution));
+function utilityPrintSolution(solution) {
+    for (const item of solution) {
+        if (!item) {
+            console.log('Empty slot');
+            continue;
+        }
 
-    // Select highest team by solver score.
-    return step5SelectWinningTeam(solutions);
+        console.log(`Hero: ${item.hero}, weight: ${item.weight}, slot: ${item.solvedSlot}`);
+    }
+    console.log('');
 }
 
 module.exports = {

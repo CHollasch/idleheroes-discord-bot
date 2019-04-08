@@ -1,5 +1,5 @@
 const {lookupArtifact} = require('../../artifacts');
-const {generateArtifactDetails} = require('../../idlecanvas');
+const {generateArtifactDetails} = require('../../canvas/canvas');
 
 function check(artifact, channel) {
     if (artifact.flagged) {

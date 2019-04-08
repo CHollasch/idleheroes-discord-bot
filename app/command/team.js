@@ -1,8 +1,57 @@
-const {generateDetailedLineupImage} = require('../idlecanvas');
+const {generateDetailedLineupImage} = require('../canvas/canvas');
 const {solve} = require('../solver');
+
 const heroLookup = require('../heroes').lookupHero;
+const { findHeroName } = require('../translations');
 
 const { RichEmbed } = require('discord.js');
+
+function processInputToTeam(channel, input) {
+    const heroFlat = input.trim().split(/\s*,\s*/);
+
+    let team = [];
+
+    let slot = 1;
+    for (let heroName of heroFlat) {
+        if (slot > 6) {
+            return team;
+        }
+
+        if (heroName === 'none' || heroName === 'empty' || heroName === 'placeholder') {
+            team.push({hero: null, slot, starCount: 5});
+            ++slot;
+            continue;
+        }
+
+        heroName = heroName
+            .replace(/[eE]1/g, '11')
+            .replace(/[eE]2/g, '12')
+            .replace(/[eE]3/g, '13')
+            .replace(/star */g, '');
+
+        const starsMatch = heroName.match(/[0-9]+/g);
+        let starCount = 5;
+        if (starsMatch && starsMatch.length !== 0) {
+            heroName = heroName.replace(/[0-9]+/g, '').trim();
+
+            const star = starsMatch[0];
+            starCount = parseInt(star);
+        }
+
+        let hero = findHeroName(heroName);
+        const found = heroLookup(hero.found);
+
+        if (hero.flagged) {
+            channel.send(`I'm unsure of that... Instead of '*${heroName}*', did you mean '**${found.name}**'?`);
+            return null;
+        }
+
+        team.push({hero: found, slot, starCount});
+        ++slot;
+    }
+
+    return team;
+}
 
 module.exports = {
     name: 'team',
@@ -61,31 +110,14 @@ module.exports = {
         const doingAura = !chkFlag('--no-aura');
         const showingConfidenceLevels = chkFlag('--confidence-levels');
 
-        const heroFlat = preprocessed.trim().split(/,/);
-        preprocessed = heroFlat.join('-').replace(/,-*/g, ' ');
+        let team = processInputToTeam(channel, preprocessed);
 
-        let team = [];
-
-        let slot = 1;
-        for (const heroName of heroFlat) {
-            if (heroName === 'none' || heroName === 'empty' || heroName === 'placeholder') {
-                team.push(null);
-                continue;
-            }
-
-            const hero = heroLookup(heroName);
-
-            if (!hero) {
-                channel.send(`Unknown hero ${heroName}. (If this spot is empty, type 'none')`);
-                return;
-            }
-
-            team.push({hero: hero.hero, slot});
-            ++slot;
+        if (!team) {
+            return;
         }
 
         if (solving) {
-            team = solve([...team.map(val => val.hero)]);
+            team = solve([...team.map(val => { return {...val.hero, starCount: val.starCount}; })]);
 
             if (team === null) {
                 channel.send('Could not find a solution for your team. This feature is still in development so it may not work with this team.');
@@ -93,12 +125,22 @@ module.exports = {
             }
 
             team = team.map(hero => {
-                return {
-                    hero: heroLookup(hero.hero).hero,
-                    slot: hero.solvedSlot,
-                    confidence: hero.confidence,
+                if (!hero) {
+                    return {hero: null, slot: null, starCount: 5, confidence: null};
                 }
+
+                return {
+                    hero: heroLookup(hero.hero),
+                    slot: hero.solvedSlot,
+                    starCount: hero.starCount,
+                    confidence: hero.confidence,
+                };
             });
+        }
+
+        const stars = [];
+        for (const item of team) {
+            stars.push(item.starCount);
         }
 
         channel.send({
@@ -108,7 +150,7 @@ module.exports = {
                     background: doingBackground,
                     confidence: showingConfidenceLevels,
                     aura: doingAura
-                }),
+                }, stars),
                 name: 'team.png'
             }]
         });
