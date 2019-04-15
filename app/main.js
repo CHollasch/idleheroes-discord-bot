@@ -7,7 +7,7 @@ const config = require('../config');
 let scriptTime = new Date().getTime();
 
 // Now hook.
-require('http').createServer().listen(3000);
+require('http').createServer().listen(80);
 
 function start() {
     client.user.setPresence({
