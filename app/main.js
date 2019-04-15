@@ -14,7 +14,7 @@ function start() {
         game: {
             name: 'Idle Heroes'
         },
-        status: 'idle'
+        status: 'online'
     });
 
     function announceNewDay(message) {
