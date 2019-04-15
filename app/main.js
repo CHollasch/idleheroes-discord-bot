@@ -5,6 +5,9 @@ const commands = require('./command/commands');
 
 let scriptTime = new Date().getTime();
 
+// Heroku.
+require('http').createServer().listen(process.env.PORT || 3000);
+
 function start() {
     client.user.setPresence({
         game: {
