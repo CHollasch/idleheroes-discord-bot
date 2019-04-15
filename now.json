@@ -6,7 +6,7 @@
 	},
 	"builds": [
 		{
-			"src": "app/main.js",
+			"src": "*.js",
 			"use": "@now/node"
 		}
 	]
