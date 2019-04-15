@@ -6,6 +6,9 @@ const commands = require('./command/commands');
 const config = require('../config');
 let scriptTime = new Date().getTime();
 
+// Now hook.
+require('http').createServer().listen(3000);
+
 function start() {
     client.user.setPresence({
         game: {
