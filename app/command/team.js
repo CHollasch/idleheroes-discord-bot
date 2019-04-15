@@ -66,13 +66,17 @@ module.exports = {
                 .setColor('#5FB0FF')
                 .addField('Team Builder Help', [
                     'The format is as follows',
-                    `\`\`${argv[0]} team (solve) [6 heroes separated by commas] [flags]\`\``,
+                    `\`\`${argv[0]} team (solve) [6 heroes separated by commas (hero) (star count)] [flags]\`\``,
                     'Flags can be located anywhere in the input after the solve identifier.',
                     '......................................................................',
                     '--no-overlay = Disables faction aura style overlays for team render',
                     '--no-background = Disables background for render and leaves transparent',
                     '--no-aura = Does not display aura data when present',
-                    '--confidence-levels = Displays confidence levels for each hero placement when solving'
+                    '--confidence-levels = Displays confidence levels for each hero placement when solving',
+                    '--pvp = When solving, uses a pvp only weighting function',
+                    '--pve = When solving, uses a pve only weighting function',
+                    '(It both pvp and pve are not included in flags, their average is used)',
+                    '--no-star-weight = Does not account for stars when prioritizing heroes for solver'
                 ], true);
 
             channel.send(embed);
@@ -110,6 +114,10 @@ module.exports = {
         const doingAura = !chkFlag('--no-aura');
         const showingConfidenceLevels = chkFlag('--confidence-levels');
 
+        const pvp = chkFlag('--pvp');
+        const pve = chkFlag('--pve');
+        const useStarWeight = !chkFlag('--no-star-weight');
+
         let team = processInputToTeam(channel, preprocessed);
 
         if (!team) {
@@ -117,7 +125,14 @@ module.exports = {
         }
 
         if (solving) {
-            team = solve([...team.map(val => { return {...val.hero, starCount: val.starCount}; })]);
+            let pvpOrPve = 'both';
+            if (pvp) pvpOrPve = 'pvp';
+            if (pve) pvpOrPve = 'pve';
+
+            team = solve([...team.map(val => { return {...val.hero, starCount: val.starCount}; })], {
+                pvpOrPve,
+                useStarWeight
+            });
 
             if (team === null) {
                 channel.send('Could not find a solution for your team. This feature is still in development so it may not work with this team.');
@@ -140,7 +155,7 @@ module.exports = {
 
         const stars = [];
         for (const item of team) {
-            stars.push(item.starCount);
+            stars.push(!item ? 5 : item.starCount);
         }
 
         channel.send({

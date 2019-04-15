@@ -4,36 +4,49 @@ const schedule = require('node-schedule');
 const commands = require('./command/commands');
 
 const config = require('../config');
-let loadTime = new Date().getTime();
+let scriptTime = new Date().getTime();
 
-client.on('ready', () => {
-    console.log(`Bot started in ${new Date().getTime() - loadTime}ms`);
-});
+function start() {
+    client.user.setPresence({
+        game: {
+            name: 'Idle Heroes'
+        },
+        status: 'idle'
+    });
 
-client.on('message', msg => {
-    commands(client, msg);
-});
+    function announceNewDay(message) {
+        client.guilds.forEach(guild => {
+            const newDayChannel = guild.channels.find(channel => channel.name === 'new-day');
 
-function announceNewDay(message) {
-    client.guilds.forEach(guild => {
-        const newDayChannel = guild.channels.find(channel => channel.name === 'new-day');
+            if (!newDayChannel) {
+                return;
+            }
 
-        if (!newDayChannel) {
-            return;
-        }
+            newDayChannel.send(message);
+        });
+    }
 
-        newDayChannel.send(message);
+    client.on('message', msg => {
+        commands(client, msg);
+    });
+
+    schedule.scheduleJob('0 50 16 * * *', () => {
+        announceNewDay(`@everyone\nThe day is ending in 10 minutes.\nRemember to check into your guild, finish daily events, and wrap up arena / events before they terminate.`);
+    });
+
+    schedule.scheduleJob('0 0 17 * * *', () => {
+        announceNewDay(`@everyone\nYou may now login and claim daily rewards.`);
     });
 }
 
-schedule.scheduleJob('0 50 16 * * *', () => {
-    const time = new Date();
-    announceNewDay(`The time is *${time}*.\nThe day is ending in 10 minutes.\nRemember to check into your guild, finish daily events, and wrap up arena / events before they terminate.`);
+client.on('ready', () => {
+    console.log(`Bot started in ${new Date().getTime() - scriptTime}ms`);
+    start();
 });
 
-schedule.scheduleJob('0 0 17 * * *', () => {
-    const time = new Date();
-    announceNewDay(`The time is *${time}*.\nYou may now login and claim daily rewards.`);
-});
+if (config.botToken) {
+    client.login(config.botToken);
+} else {
+    client.login(process.env.TOKEN);
+}
 
-client.login(config.botToken);

@@ -7,9 +7,10 @@ const solverCache = new NodeCache({
     checkperiod: 60
 });
 
-function step0DoSolverCache(team, solution = undefined) {
+function step0DoSolverCache(team, flags, solution = undefined) {
     // Generate unique key for teams, hero order doesn't matter.
-    const teamKey = team.map(hero => hero.name).sort((a, b) => a.localeCompare(b)).join(',');
+    let teamKey = team.map(hero => hero.name).sort((a, b) => a.localeCompare(b)).join(',');
+    teamKey += JSON.stringify(flags);
 
     // Do we put into the cache or check if the cache contains?
     if (solution) {
@@ -26,7 +27,10 @@ function step0DoSolverCache(team, solution = undefined) {
     }
 }
 
-function step1BuildTeamSpace(team) {
+function step1BuildTeamSpace(
+    team,
+    weightFunction = (hero) => ((hero.pvp + hero.pve) / 2.0) * (hero.starCount * 2.0)
+) {
     const heroes = [];
 
     // Construct a mapping of all heroes with pvp/pve weights for future sorting.
@@ -50,7 +54,7 @@ function step1BuildTeamSpace(team) {
         }
 
         heroes.push({
-            weight: (hero.pvp + hero.pve) / 2.0,
+            weight: weightFunction(hero),
             hero: hero.name,
             starCount: hero.starCount === undefined ? 5 : hero.starCount,
             allSlots,
@@ -201,15 +205,27 @@ function step5SelectWinningTeam(solutions) {
     return bestTeam.solution;
 }
 
-function solve(team) {
+const weightFunctions = {
+    pvp: (hero) => hero.pvp * (hero.starCount * 2.0),
+    pve: (hero) => hero.pve * (hero.starCount * 2.0),
+    both: (hero) => ((hero.pvp + hero.pve) / 2.0) * (hero.starCount * 2.0)
+};
+
+function solve(team, flags = {
+    pvpOrPve: 'both',
+    useStarWeight: true
+}) {
     let time = new Date().getTime();
-    let winningTeam = step0DoSolverCache(team);
+    let winningTeam = step0DoSolverCache(team, flags);
 
     if (!winningTeam) {
         console.log(`Team solver starting...`);
 
         // Build problem space and run optimizations.
-        let heroes = step1BuildTeamSpace(team);
+        let heroes = step1BuildTeamSpace(
+            team,
+            (hero) => weightFunctions[flags.pvpOrPve](hero) / (flags.useStarWeight ? 1.0 : (hero.starCount * 2.0))
+        );
 
         // Some heroes have no builds?
         if (!heroes) {
@@ -233,7 +249,7 @@ function solve(team) {
         winningTeam = step5SelectWinningTeam(solutions);
 
         // Update cache.
-        step0DoSolverCache(team, winningTeam);
+        step0DoSolverCache(team, flags, winningTeam);
 
         time = new Date().getTime() - time;
         console.log(`Solver took ${time} milliseconds to generate an optimal solution. Found ${solutions.length} possible teams.`);

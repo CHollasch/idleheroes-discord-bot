@@ -84,7 +84,7 @@ const subCommands = [
             const diff = expTable[i] - exp;
             const cost = diff * 0.02;
 
-            channel.send(`You need to spend $${commas(cost)} to reach VIP ${i + 1}`);
+            channel.send(`You need to spend $${commas(cost.toFixed(2))} to reach VIP ${i + 1}`);
         }
     },
     {
@@ -102,7 +102,7 @@ const subCommands = [
                 return;
             }
 
-            channel.send(`${commas(exp)} VIP experience costs $${commas(exp * 0.02)}`);
+            channel.send(`${commas(exp)} VIP experience costs $${commas((exp * 0.02).toFixed(2))}`);
         }
     }
 ];
