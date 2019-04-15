@@ -23,7 +23,7 @@ function processInputToTeam(channel, input) {
             continue;
         }
 
-        heroName = heroName
+        heroName = '' + heroName
             .replace(/[eE]1/g, '11')
             .replace(/[eE]2/g, '12')
             .replace(/[eE]3/g, '13')
