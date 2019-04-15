@@ -47,9 +47,5 @@ client.on('ready', () => {
     start();
 });
 
-if (config.botToken) {
-    client.login(config.botToken);
-} else {
-    client.login(process.env.TOKEN);
-}
+client.login(process.env.TOKEN);
 
