@@ -29,12 +29,12 @@ function processInputToTeam(channel, input) {
             .replace(/[eE]3/g, '13')
             .replace(/star */g, '');
 
-        const starsMatch = heroName.match(/[0-9]+/g);
+        const starsMatch = heroName.match(/ +[0-9]+/g);
         let starCount = 5;
         if (starsMatch && starsMatch.length !== 0) {
-            heroName = heroName.replace(/[0-9]+/g, '').trim();
+            heroName = heroName.replace(/ +[0-9]+/g, '').trim();
 
-            const star = starsMatch[0];
+            const star = starsMatch[0].trim();
             starCount = parseInt(star);
         }
 
