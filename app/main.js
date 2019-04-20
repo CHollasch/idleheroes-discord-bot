@@ -32,11 +32,11 @@ function start() {
         commands(client, msg);
     });
 
-    schedule.scheduleJob('0 50 16 ? * * *', () => {
+    schedule.scheduleJob('0 50 16 * * * *', () => {
         announceNewDay(`@everyone\nThe day is ending in 10 minutes.\nRemember to check into your guild, finish daily events, and wrap up arena / events before they terminate.`);
     });
 
-    schedule.scheduleJob('0 0 17 ? * * *', () => {
+    schedule.scheduleJob('0 0 17 * * * *', () => {
         announceNewDay(`@everyone\nYou may now login and claim daily rewards.`);
     });
 }
