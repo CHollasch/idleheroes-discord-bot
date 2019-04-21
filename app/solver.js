@@ -9,7 +9,7 @@ const solverCache = new NodeCache({
 
 function step0DoSolverCache(team, flags, solution = undefined) {
     // Generate unique key for teams, hero order doesn't matter.
-    let teamKey = team.map(hero => hero.name).sort((a, b) => a.localeCompare(b)).join(',');
+    let teamKey = team.map(hero => (hero.name + hero.starCount)).sort((a, b) => a.localeCompare(b)).join(',');
     teamKey += JSON.stringify(flags);
 
     // Do we put into the cache or check if the cache contains?
