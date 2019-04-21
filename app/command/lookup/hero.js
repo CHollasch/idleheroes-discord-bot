@@ -17,8 +17,13 @@ function buildField(heroBase) {
     ];
 }
 
-function lookup(channel, scope, raw) {
+function lookup(channel, scope, raw, dumping) {
     const hero = lookupHero(raw.found);
+
+    if (dumping) {
+        channel.send('```' + JSON.stringify(hero, null, 4) + '```');
+        return;
+    }
 
     if (!hero.builds || !hero.level) {
         channel.send(`There are no statistics for **${hero.name}** yet.`);
@@ -47,8 +52,17 @@ function lookup(channel, scope, raw) {
 module.exports = {
     hero: {
         aliases: ['hero', 'heroes', 'h', 'herostats', 'hstats', 'character', 'player'],
-        command: (channel, scope) => lookupSimple(
-            channel, scope, 'hero', findHeroName, (item => lookup(channel, scope, item))
-        )
+        command: (channel, scope) => {
+            let dumping = false;
+
+            if (scope.join(' ').trim().endsWith('--jsdump')) {
+                scope = scope.splice(0, scope.length - 1);
+                dumping = true;
+            }
+
+            lookupSimple(
+                channel, scope, 'hero', findHeroName, (item => lookup(channel, scope, item, dumping))
+            );
+        }
     }
 };
