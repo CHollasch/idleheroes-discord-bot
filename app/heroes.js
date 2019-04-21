@@ -66,8 +66,8 @@ const heroes = {
             name: 'Baade',
             faction: 'shadow',
             role: 'Warrior',
-            pve: 6.5,
-            pvp: 6.5,
+            pve: 5.0,
+            pvp: 5.0,
             tier: 2.5,
             builds: [
                 {
