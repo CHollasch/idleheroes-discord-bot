@@ -38,7 +38,7 @@ const heroes = {
     queen: ['queen'],
     skerei: ['skerei', 'scary'],
     'demon-hunter': ['demon hunter', 'dh'],
-    'dragon-slayer': ['dragon slayer', 'ds'],
+    'dragon-slayer': ['dragon slayer', 'ds', 'donald trump'],
     eddga: ['eddga'],
     faceless: ['faceless', 'face'],
     groo: ['groo'],
