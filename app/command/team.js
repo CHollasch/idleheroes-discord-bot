@@ -44,7 +44,7 @@ function processInputToTeam(channel, input) {
         const found = heroLookup(hero.found);
 
         if (hero.flagged) {
-            channel.send(`I'm unsure of that... Instead of '*${heroName}*', did you mean '**${found.name}**'?`);
+            channel.send(`I'm unsure of that... Instead of '*${heroName.trim()}*', did you mean '**${found.name}**'?`);
             return null;
         }
 
