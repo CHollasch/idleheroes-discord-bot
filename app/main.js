@@ -8,7 +8,7 @@ let scriptTime = new Date().getTime();
 // Heroku.
 require('http').createServer().listen(process.env.PORT || 3000);
 
-function start() {
+function start(time) {
     client.user.setPresence({
         game: {
             name: 'Idle Heroes'
@@ -39,11 +39,22 @@ function start() {
     schedule.scheduleJob('0 0 17 * * * *', () => {
         announceNewDay(`@everyone\nYou may now login and claim daily rewards.`);
     });
+
+    client.guilds.forEach(guild => {
+        const modSpamChannel = guild.channels.find(channel => channel.name === 'mod-spam');
+
+        if (!modSpamChannel) {
+            return;
+        }
+
+        modSpamChannel.send(`Bot successfully loaded in ${time}ms`);
+    });
 }
 
 client.on('ready', () => {
-    console.log(`Bot started in ${new Date().getTime() - scriptTime}ms`);
-    start();
+    const delta = new Date().getTime() - scriptTime
+    console.log(`Bot started in ${delta}ms`);
+    start(delta);
 });
 
 client.login(process.env.TOKEN);
