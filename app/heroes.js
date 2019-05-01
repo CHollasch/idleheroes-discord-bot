@@ -85,33 +85,42 @@ const heroes = {
             ],
             level: {
                 5: {
-                    power: 0,
-                    health: 0,
-                    attack: 0,
-                    armor: 0,
-                    speed: 0,
+                    power: 6845,
+                    health: 26683,
+                    attack: 2757,
+                    armor: 632,
+                    speed: 606,
                     ability: [
-                        '**Flexicution** - Dab on the haters?'
+                        '**Nether Strike** - Deals (**150% of Attack**) damage against the enemy with the lowest HP, and has a **48%** chance to deal 2 times damage, a **36%** chance to deal 4 times damage. Restores self HP by **20%** of dealt damage, and increases self Attack by **40%** for 6 rounds. (this skill cannot Crit)',
+                        '**Will of Undead** - HP **+20%**, Attack **+10%**, Armor Break **+20%**',
+                        '**Blood Armor** - Whenever a foe dies, increases self Damage Reduce by **10%** for 1 round, and restores self HP by **100%** of Attack.',
+                        '**Death Threat** - Basic attack targets the enemy with the lowest HP and deals (**110% of  Attack**) damage, has a **50%** chance to deal 1.5 times damage, a **25%** chance to deal 2.25 times damage. (this skill cannot Crit)'
                     ]
                 },
                 6: {
-                    power: 0,
-                    health: 0,
-                    attack: 0,
-                    armor: 0,
-                    speed: 0,
+                    power: 17539,
+                    health: 83309,
+                    attack: 6859,
+                    armor: 894,
+                    speed: 803,
                     ability: [
-                        '**Flexicution** - Dab on the haters?'
+                        '**Nether Strike** - Deals (**200% of Attack**) damage against the enemy with the lowest HP, and has a **48%** chance to deal 2 times damage, a **36%** chance to deal 4 times damage. Restores self HP by **30%** of dealt damage, and increases self Attack by **60%** for 6 rounds. (this skill cannot Crit)',
+                        '**Will of Undead** - HP **+30%**, Attack **+15%**, Armor Break **+30%**',
+                        '**Blood Armor** - Whenever a foe dies, increases self Damage Reduce by **20%** for 1 round, and restores self HP by **150%** of Attack.',
+                        '**Death Threat** - Basic attack targets the enemy with the lowest HP and deals (**120% of  Attack**) damage, has a **50%** chance to deal 1.7 times damage, a **25%** chance to deal 2.89 times damage. (this skill cannot Crit)'
                     ]
                 },
                 10: {
-                    power: 0,
-                    health: 0,
-                    attack: 0,
-                    armor: 0,
-                    speed: 0,
+                    power: 101658,
+                    health: 702072,
+                    attack: 20655,
+                    armor: 1554,
+                    speed: 1155,
                     ability: [
-                        '**Flexicution** - Dab on the haters?'
+                        '**Nether Strike** - Deals (**350% of Attack**) damage against the enemy with the lowest HP, and has a **48%** chance to deal 2 times damage, a **36%** chance to deal 4 times damage. Restores self HP by **40%** of dealt damage, and increases self Attack by **80%** for 6 rounds. (this skill cannot Crit)',
+                        '**Will of Undead** - HP **+40%**, Attack **+25%**, Armor Break **+50%**',
+                        '**Blood Armor** - Whenever a foe dies, increases self Damage Reduce by **40%** for 1 round, and restores self HP by **250%** of Attack.',
+                        '**Death Threat** - Basic attack targets the enemy with the lowest HP and deals (**150% of  Attack**) damage, has a **50%** chance to deal 2 times damage, a **25%** chance to deal 4 times damage. (this skill cannot Crit)'
                     ]
                 }
             }
