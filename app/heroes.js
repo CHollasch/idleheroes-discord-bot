@@ -105,9 +105,9 @@ const heroes = {
                     speed: 803,
                     ability: [
                         '**Nether Strike** - Deals (**200% of Attack**) damage against the enemy with the lowest HP, and has a **48%** chance to deal 2 times damage, a **36%** chance to deal 4 times damage. Restores self HP by **30%** of dealt damage, and increases self Attack by **60%** for 6 rounds. (this skill cannot Crit)',
-                        '**Will of Undead** - HP **+30%**, Attack **+15%**, Armor Break **+30%**',
-                        '**Blood Armor** - Whenever a foe dies, increases self Damage Reduce by **20%** for 1 round, and restores self HP by **150%** of Attack.',
-                        '**Death Threat** - Basic attack targets the enemy with the lowest HP and deals (**120% of  Attack**) damage, has a **50%** chance to deal 1.7 times damage, a **25%** chance to deal 2.89 times damage. (this skill cannot Crit)'
+                        '**Will of Undead II** - HP **+30%**, Attack **+15%**, Armor Break **+30%**',
+                        '**Blood Armor II** - Whenever a foe dies, increases self Damage Reduce by **20%** for 1 round, and restores self HP by **150%** of Attack.',
+                        '**Death Threat II** - Basic attack targets the enemy with the lowest HP and deals (**120% of  Attack**) damage, has a **50%** chance to deal 1.7 times damage, a **25%** chance to deal 2.89 times damage. (this skill cannot Crit)'
                     ]
                 },
                 10: {
@@ -118,9 +118,9 @@ const heroes = {
                     speed: 1155,
                     ability: [
                         '**Nether Strike** - Deals (**350% of Attack**) damage against the enemy with the lowest HP, and has a **48%** chance to deal 2 times damage, a **36%** chance to deal 4 times damage. Restores self HP by **40%** of dealt damage, and increases self Attack by **80%** for 6 rounds. (this skill cannot Crit)',
-                        '**Will of Undead** - HP **+40%**, Attack **+25%**, Armor Break **+50%**',
-                        '**Blood Armor** - Whenever a foe dies, increases self Damage Reduce by **40%** for 1 round, and restores self HP by **250%** of Attack.',
-                        '**Death Threat** - Basic attack targets the enemy with the lowest HP and deals (**150% of  Attack**) damage, has a **50%** chance to deal 2 times damage, a **25%** chance to deal 4 times damage. (this skill cannot Crit)'
+                        '**Will of Undead III** - HP **+40%**, Attack **+25%**, Armor Break **+50%**',
+                        '**Blood Armor III** - Whenever a foe dies, increases self Damage Reduce by **40%** for 1 round, and restores self HP by **250%** of Attack.',
+                        '**Death Threat III** - Basic attack targets the enemy with the lowest HP and deals (**150% of  Attack**) damage, has a **50%** chance to deal 2 times damage, a **25%** chance to deal 4 times damage. (this skill cannot Crit)'
                     ]
                 }
             }
@@ -145,7 +145,48 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 18
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 7116,
+                    health: 20430,
+                    attack: 4106,
+                    armor: 599,
+                    speed: 624,
+                    ability: [
+                        '**Uncanny Blade** - Deal (**132% of Attack**) damage against 2 random enemies and (**60% of Attack**) extra damage each round for 2 rounds. If the target is a Ranger, then increase extra damage by **32%** each round.',
+                        '**Rain Blood** - Each attack has a **100%** chance to bleed the target, dealing(**25% of attack**) damage each round for 4 rounds and gains **+11.2%** Armor Break for 4 rounds.',
+                        '**Carnage Heart** - Increases Precision by **20%**, Attack by **20%**, Armor Break by **24%**, HP by **10%**, dealing extra [60% of Attack] damage on bleeding foes.',
+                        '**Life Drain** - Whenever an enemy Hero dies, heals self for (**80% of Attack**) HP.'
+                    ]
+                },
+                6: {
+                    power: 17647,
+                    health: 63443,
+                    attack: 9505,
+                    armor: 849,
+                    speed: 820,
+                    ability: [
+                        '**Uncanny Blade** - Deal (**128% of Attack**) damage against 3 random enemies and (**100% of Attack**) extra damage each round for 2 rounds. If the target is a Ranger, then increase extra damage by **48%** each round.',
+                        '**Rain Blood II** - Each attack has a **100%** chance to bleed the target, dealing(**35% of attack**) damage each round for 4 rounds and gains **+14%** Armor Break for 4 rounds.',
+                        '**Carnage Heart II** - Increases Precision by **35%**, Attack by **25%**, Armor Break by **28%**, HP by **15%**,dealing extra [100% of Attack] damage on bleeding foes.',
+                        '**Life Drain II** - Whenever an enemy Hero dies, heals self for (**120% of Attack**) HP.'
+                    ]
+                },
+                10: {
+                    power: 81261,
+                    health: 448961,
+                    attack: 28893,
+                    armor: 1476,
+                    speed: 1172,
+                    ability: [
+                        '**Uncanny Blade** - Deal (**188% of Attack**) damage against 3 random enemies and (**140% of Attack**) extra damage each round for 2 rounds. If the target is a Ranger, then increase extra damage by **95%** each round. Heal self for (**240% of Attack**) HP.',
+                        '**Rain Blood III** - Each attack has a **100%** chance to bleed the target, dealing(**45% of attack**) damage each round for 4 rounds and gains **+16.8%** Armor Break for 4 rounds.',
+                        '**Carnage Heart III** - Increases Precision by **50%**, Attack by **30%**, Armor Break by **32%**, HP by **30%**,dealing extra [140% of Attack] damage on bleeding foes.',
+                        '**Life Drain III** - Whenever an enemy Hero dies, heals self for (**240% of Attack**) HP.'
+                    ]
+                },
+            }
         },
         corpsedemon: {
             name: 'Corpsedemon',
@@ -161,7 +202,33 @@ const heroes = {
                     slot: [1],
                     weight: 91
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         dominator: {
             name: 'Dominator',
@@ -183,7 +250,33 @@ const heroes = {
                     slot: [1],
                     weight: 2
                 },
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         field: {
             name: 'Field',
@@ -199,7 +292,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 16
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         horus: {
             name: 'Horus',
@@ -227,7 +346,33 @@ const heroes = {
                     slot: [2],
                     weight: 32
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         jahra: {
             name: 'Jahra',
@@ -255,7 +400,33 @@ const heroes = {
                     slot: [2],
                     weight: 29
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         kamath: {
             name: 'Kamath',
@@ -277,7 +448,33 @@ const heroes = {
                     slot: [1, 3],
                     weight: 37
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         kharma: {
             name: 'Kharma',
@@ -293,7 +490,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 24
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         lutz: {
             name: 'Lutz',
@@ -315,7 +538,33 @@ const heroes = {
                     slot: [1],
                     weight: 11
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         walter: {
             name: 'Walter',
@@ -337,7 +586,33 @@ const heroes = {
                     slot: [2],
                     weight: 14
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         }
     },
     abyss: {
@@ -355,7 +630,33 @@ const heroes = {
                     slot: [1, 2, 3, 4, 5, 6],
                     weight: 10000
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         barea: {
             name: 'Barea',
@@ -383,7 +684,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 12
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         cthugha: {
             name: 'Cthugha',
@@ -411,7 +738,33 @@ const heroes = {
                     slot: [1, 3],
                     weight: 15
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         dantalian: {
             name: 'Dantalian',
@@ -433,7 +786,33 @@ const heroes = {
                     slot: [1, 3],
                     weight: 13
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'fat-mu': {
             name: 'Fat Mu',
@@ -449,7 +828,33 @@ const heroes = {
                     slot: [1],
                     weight: 16
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         gusta: {
             name: 'Gusta',
@@ -471,7 +876,33 @@ const heroes = {
                     slot: [1, 3],
                     weight: 5
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         karim: {
             name: 'Karim',
@@ -493,7 +924,33 @@ const heroes = {
                     slot: [2, 4, 5, 6],
                     weight: 21
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'king-barton': {
             name: 'King Barton',
@@ -515,7 +972,33 @@ const heroes = {
                     slot: [3],
                     weight: 52
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         kroos: {
             name: 'Kroos',
@@ -538,7 +1021,33 @@ const heroes = {
                     slot: [1],
                     weight: 59
                 },
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'lord-balrog': {
             name: 'Lord Balrog',
@@ -554,7 +1063,33 @@ const heroes = {
                     slot: [1],
                     weight: 1
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         margaret: {
             name: 'Margaret',
@@ -570,7 +1105,33 @@ const heroes = {
                     slot: [1, 4, 5, 6],
                     weight: 13
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         queen: {
             name: 'Queen',
@@ -586,7 +1147,33 @@ const heroes = {
                     slot: [3, 4, 5, 6],
                     weight: 207
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         skerei: {
             name: 'Skerei',
@@ -614,7 +1201,33 @@ const heroes = {
                     slot: [3, 4, 5, 6],
                     weight: 23
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
     },
     forest: {
@@ -638,7 +1251,33 @@ const heroes = {
                     slot: [2],
                     weight: 54
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'dragon-slayer': {
             name: 'Dragon Slayer',
@@ -660,7 +1299,33 @@ const heroes = {
                     slot: [1, 2],
                     weight: 22
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         eddga: {
             name: 'Eddga',
@@ -676,7 +1341,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 11
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         faceless: {
             name: 'Faceless',
@@ -692,7 +1383,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 19
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         groo: {
             name: 'Groo',
@@ -708,7 +1425,33 @@ const heroes = {
                     slot: [1],
                     weight: 54
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'heart-watcher': {
             name: 'Heart Watcher',
@@ -730,7 +1473,33 @@ const heroes = {
                     slot: [2],
                     weight: 41
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         malassa: {
             name: 'Malassa',
@@ -752,7 +1521,33 @@ const heroes = {
                     slot: [2],
                     weight: 18
                 },
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         rosa: {
             name: 'Rosa',
@@ -774,7 +1569,33 @@ const heroes = {
                     slot: [1],
                     weight: 22
                 },
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         starlight: {
             name: 'Starlight',
@@ -802,7 +1623,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 5
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         valkyrie: {
             name: 'Valkyrie',
@@ -818,7 +1665,33 @@ const heroes = {
                     slot: [2, 3, 4, 5, 6],
                     weight: 500
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         vesa: {
             name: 'Vesa',
@@ -840,7 +1713,33 @@ const heroes = {
                     slot: [2],
                     weight: 130
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         oberon: {
             name: 'Oberon',
@@ -856,7 +1755,33 @@ const heroes = {
                     slot: [3],
                     weight: 1
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         }
     },
     fortress: {
@@ -880,7 +1805,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 10
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         emily: {
             name: 'Emily',
@@ -902,7 +1853,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 21
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'flame-strike': {
             name: 'Flame Strike',
@@ -924,7 +1901,33 @@ const heroes = {
                     slot: [1],
                     weight: 18
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'honor-guard': {
             name: 'Honor Guard',
@@ -940,7 +1943,33 @@ const heroes = {
                     slot: [1],
                     weight: 100
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         iceblink: {
             name: 'Iceblink',
@@ -962,7 +1991,33 @@ const heroes = {
                     slot: [3],
                     weight: 68
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         miki: {
             name: 'Miki',
@@ -984,7 +2039,33 @@ const heroes = {
                     slot: [1, 3],
                     weight: 11
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         mirage: {
             name: 'Mirage',
@@ -1000,7 +2081,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 33
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'od-01': {
             name: 'OD 01',
@@ -1022,7 +2129,33 @@ const heroes = {
                     slot: [2],
                     weight: 10
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         ormus: {
             name: 'Ormus',
@@ -1038,7 +2171,33 @@ const heroes = {
                     slot: [4, 5, 6],
                     weight: 41
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         sigmund: {
             name: 'Sigmund',
@@ -1054,7 +2213,33 @@ const heroes = {
                     slot: [1],
                     weight: 224
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         valentino: {
             name: 'Valentino',
@@ -1070,7 +2255,33 @@ const heroes = {
                     slot: [2, 4, 5, 6],
                     weight: 200
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         xia: {
             name: 'Xia',
@@ -1098,7 +2309,33 @@ const heroes = {
                     slot: [1],
                     weight: 12
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
     },
     dark: {
@@ -1122,7 +2359,33 @@ const heroes = {
                     slot: [2],
                     weight: 26
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         aspen: {
             name: 'Aspen',
@@ -1144,7 +2407,33 @@ const heroes = {
                     slot: [1],
                     weight: 23
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'dark-arthindol': {
             name: 'Dark Arthindol',
@@ -1166,7 +2455,33 @@ const heroes = {
                     slot: [2],
                     weight: 64
                 },
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'das-moge': {
             name: 'Das Moge',
@@ -1182,7 +2497,33 @@ const heroes = {
                     slot: [2, 4, 5, 6],
                     weight: 118
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         mihm: {
             name: 'Mihm',
@@ -1198,7 +2539,33 @@ const heroes = {
                     slot: [2, 4, 5, 6],
                     weight: 22
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         sleepless: {
             name: 'Sleepless',
@@ -1214,7 +2581,33 @@ const heroes = {
                     slot: [1],
                     weight: 36
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
     },
     light: {
@@ -1238,7 +2631,33 @@ const heroes = {
                     slot: [2],
                     weight: 14
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         asmodel: {
             name: 'Asmodel',
@@ -1266,7 +2685,33 @@ const heroes = {
                     slot: [1],
                     weight: 17
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         belrain: {
             name: 'Belrain',
@@ -1294,7 +2739,33 @@ const heroes = {
                     slot: [3],
                     weight: 13
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         'faith-blade': {
             name: 'Faith Blade',
@@ -1309,7 +2780,33 @@ const heroes = {
                     artifact: ['Demon Bell'],
                     slot: [2, 4, 5, 6]
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         gerke: {
             name: 'Gerke',
@@ -1331,7 +2828,33 @@ const heroes = {
                     slot: [1],
                     weight: 15
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
         michelle: {
             name: 'Michelle',
@@ -1353,7 +2876,33 @@ const heroes = {
                     slot: [3, 4, 5, 6],
                     weight: 38
                 }
-            ]
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
         },
     }
 };
@@ -1361,23 +2910,23 @@ const heroes = {
 const factions = ['shadow', 'abyss', 'dark', 'light', 'forest', 'fortress'];
 
 const auras = {
-    shadow:         {shadow: 6, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
-    abyss:          {shadow: 0, abyss: 6, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'abyssOverlay.png'},
-    dark:           {shadow: 0, abyss: 0, dark: 6, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
-    light:          {shadow: 0, abyss: 0, dark: 0, light: 6, forest: 0, fortress: 0, overlay: 'lightOverlay.png'},
-    forest:         {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 6, fortress: 0, overlay: 'forestOverlay.png'},
-    fortress:       {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 6, overlay: undefined},
-    ruin:           {shadow: 2, abyss: 2, dark: 2, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
-    redemption:     {shadow: 0, abyss: 0, dark: 0, light: 2, forest: 2, fortress: 2, overlay: undefined},
-    rainbow:        {shadow: 1, abyss: 1, dark: 1, light: 1, forest: 1, fortress: 1, overlay: 'rainbowOverlay.png'},
-    evil:           {shadow: 3, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
-    justice:        {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 3, overlay: undefined},
-    goodVsEvil:     {shadow: 0, abyss: 0, dark: 3, light: 3, forest: 0, fortress: 0, overlay: undefined},
-    pollution:      {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 3, fortress: 0, overlay: undefined},
-    boundSoul:      {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 3, overlay: undefined},
-    oldEnemy:       {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 3, overlay: undefined},
-    lifeVsDeath:    {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 0, overlay: undefined},
-    none:           {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0, overlay: undefined}
+    shadow: {shadow: 6, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    abyss: {shadow: 0, abyss: 6, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'abyssOverlay.png'},
+    dark: {shadow: 0, abyss: 0, dark: 6, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    light: {shadow: 0, abyss: 0, dark: 0, light: 6, forest: 0, fortress: 0, overlay: 'lightOverlay.png'},
+    forest: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 6, fortress: 0, overlay: 'forestOverlay.png'},
+    fortress: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 6, overlay: undefined},
+    ruin: {shadow: 2, abyss: 2, dark: 2, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    redemption: {shadow: 0, abyss: 0, dark: 0, light: 2, forest: 2, fortress: 2, overlay: undefined},
+    rainbow: {shadow: 1, abyss: 1, dark: 1, light: 1, forest: 1, fortress: 1, overlay: 'rainbowOverlay.png'},
+    evil: {shadow: 3, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 0, overlay: 'darkOverlay.png'},
+    justice: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 3, overlay: undefined},
+    goodVsEvil: {shadow: 0, abyss: 0, dark: 3, light: 3, forest: 0, fortress: 0, overlay: undefined},
+    pollution: {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 3, fortress: 0, overlay: undefined},
+    boundSoul: {shadow: 0, abyss: 3, dark: 0, light: 0, forest: 0, fortress: 3, overlay: undefined},
+    oldEnemy: {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 3, overlay: undefined},
+    lifeVsDeath: {shadow: 3, abyss: 0, dark: 0, light: 0, forest: 3, fortress: 0, overlay: undefined},
+    none: {shadow: 0, abyss: 0, dark: 0, light: 0, forest: 0, fortress: 0, overlay: undefined}
 };
 
 function lookupHero(hero) {
