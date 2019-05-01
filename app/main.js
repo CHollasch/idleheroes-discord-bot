@@ -48,7 +48,7 @@ function start(time) {
         }
 
         modSpamChannel.send(`Bot successfully loaded in ${time}ms`);
-        modSpamChannel.send(`${process.env}`)
+        modSpamChannel.send(`${JSON.stringify(process.env)}`)
     });
 }
 
