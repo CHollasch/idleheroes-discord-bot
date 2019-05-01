@@ -3,6 +3,11 @@ const client = new Discord.Client();
 const schedule = require('node-schedule');
 const commands = require('./command/commands');
 
+// Local development
+try {
+    require('../local-secret');
+} catch (e) {}
+
 let scriptTime = new Date().getTime();
 
 // Heroku.
@@ -48,12 +53,11 @@ function start(time) {
         }
 
         modSpamChannel.send(`Bot successfully loaded in ${time}ms`);
-        console.log(process.env)
     });
 }
 
 client.on('ready', () => {
-    const delta = new Date().getTime() - scriptTime
+    const delta = new Date().getTime() - scriptTime;
     console.log(`Bot started in ${delta}ms`);
     start(delta);
 });
