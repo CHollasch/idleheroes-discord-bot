@@ -1,6 +1,8 @@
 const RSB = require('stream-buffers').ReadableStreamBuffer;
 
 const {buildHero} = require('../canvas/canvas');
+const {findFaction} = require('../translations');
+
 const {PNG} = require('pngjs');
 const PI = require('pureimage');
 
@@ -8,15 +10,7 @@ const request = require('request');
 
 const starCount = (uid) => ((uid % 9) + 5);
 const faction = (uid) => factions[uid % factions.length];
-
-const factions = [
-    'shadow',
-    'forest',
-    'abyss',
-    'fortress',
-    'light',
-    'dark'
-];
+const factions = ['dark', 'light', 'fortress', 'forest', 'abyss', 'shadow'];
 
 function hashCode(s) {
     let h = 0;
@@ -26,6 +20,25 @@ function hashCode(s) {
     }
 
     return h;
+}
+
+function tryArg(arg, channel, options) {
+    if (isNaN(parseInt(arg))) {
+        // Parse faction
+        let factionRaw = arg.toLowerCase();
+        factionRaw = findFaction(factionRaw);
+
+        if (factionRaw.flagged) {
+            channel.send(`I'm unsure about that... Did you mean '*${factionRaw.found}*'`);
+            return;
+        }
+
+        options.faction = factionRaw.found;
+    } else {
+        let starRaw = parseInt(arg);
+        starRaw = Math.min(Math.max(starRaw, 1), 13);
+        options.stars = starRaw;
+    }
 }
 
 async function command(client, msg) {
@@ -48,33 +61,17 @@ async function command(client, msg) {
 
     let stars = starCount(unique);
     let fac = faction(unique);
+    const options = {faction: fac, stars};
 
     if (args.length > 3) {
-        let starRaw = parseInt(args[3]);
-
-        if (isNaN(starRaw)) {
-            channel.send('The given star count is not a valid number.');
-            return;
-        }
-
-        if (starRaw < 1 || starRaw > 13) {
-            channel.send('Star count must be between 1 and 13 inclusive');
-            return;
-        }
-
-        stars = starRaw;
+        tryArg(args[3], channel, options);
     }
-
     if (args.length > 4) {
-        let factionRaw = args[4].toLowerCase();
-
-        if (!factions.includes(factionRaw)) {
-            channel.send(`No such faction ${factionRaw}`);
-            return;
-        }
-
-        fac = factionRaw;
+        tryArg(args[4], channel, options);
     }
+
+    fac = options.faction;
+    stars = options.stars;
 
     request({
         url: avatarURL,

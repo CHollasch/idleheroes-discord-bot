@@ -110,6 +110,15 @@ const events = {
     loot: ['loot event', 'campaign event', 'campaign', 'campaign loot event']
 };
 
+const factions = {
+    dark: ['dark', 'night', 'darkness', 'evil', 'purple'],
+    light: ['light', 'heaven', 'bright', 'angel', 'yellow'],
+    forest: ['forest', 'jungle', 'trees', 'green'],
+    fortress: ['fortress', 'castle', 'midevil', 'dark blue'],
+    abyss: ['abyss', 'fire', 'hell', 'red'],
+    shadow: ['shadow', 'spooky', 'scary', 'monster', 'light blue']
+};
+
 function findInObject(raw, object) {
     const allItems = [];
 
@@ -143,4 +152,5 @@ module.exports = {
     findAuraName: (aura) => findInObject(aura, auras),
     findHeroName: (hero) => findInObject(hero, heroes),
     findEvent: (event) => findInObject(event, events),
+    findFaction: (faction) => findInObject(faction, factions)
 };
