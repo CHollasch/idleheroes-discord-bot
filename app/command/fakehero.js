@@ -23,6 +23,8 @@ function hashCode(s) {
 }
 
 function tryArg(arg, channel, options) {
+    arg = arg.replace(/\W/g, '');
+
     if (isNaN(parseInt(arg))) {
         // Parse faction
         let factionRaw = arg.toLowerCase();
