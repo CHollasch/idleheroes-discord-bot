@@ -1,5 +1,7 @@
-const {RichEmbed} = require('discord.js');
+const {RichEmbed, Attachment} = require('discord.js');
 const lookupSimple = require('../../middleware/lookupsimple');
+
+const {buildHero} = require('../../canvas/canvas');
 
 const {lookupHero} = require('../../heroes');
 const {findHeroName} = require('../../translations');
@@ -17,7 +19,7 @@ function buildField(heroBase) {
     ];
 }
 
-function lookup(channel, scope, raw, dumping) {
+async function lookup(channel, scope, raw, dumping) {
     const hero = lookupHero(raw.found);
 
     if (dumping) {
@@ -34,7 +36,8 @@ function lookup(channel, scope, raw, dumping) {
         : scope.includes('9') || scope.includes('8') || scope.includes('7') || scope.includes('6') ? 6
             : 5;
 
-    const fileName = `${hero.name.toLowerCase().replace(/ /g, '-')}`;
+    const heroImage = await buildHero(hero, star);
+
     const embed = new RichEmbed()
         .setTimestamp()
         .setColor(0x0066ff)
@@ -42,7 +45,7 @@ function lookup(channel, scope, raw, dumping) {
         .setDescription([
             `**${hero.role}**  -  PvP *${hero.pvp}/10*, PvE *${hero.pve}/10*`,
         ])
-        .attachFile(`./assets/heroes/${hero.faction}/${fileName}/${star}.png`)
+        .attachFile(new Attachment(heroImage, `${star}.png`))
         .setThumbnail(`attachment://${star}.png`)
         .addField('Base Statistics', buildField(hero.level[star]), false);
 
