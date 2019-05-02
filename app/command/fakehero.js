@@ -30,6 +30,7 @@ function hashCode(s) {
 
 async function command(client, msg) {
     const channel = msg.channel;
+    const args = msg.content.split(' ');
 
     if (msg.mentions.users.array().length === 0) {
         channel.send('Please mention a user');
@@ -45,6 +46,36 @@ async function command(client, msg) {
 
     const unique = Math.abs(hashCode(avatarURL));
 
+    let stars = starCount(unique);
+    let fac = faction(unique);
+
+    if (args.length > 3) {
+        let starRaw = parseInt(args[3]);
+
+        if (isNaN(starRaw)) {
+            channel.send('The given star count is not a valid number.');
+            return;
+        }
+
+        if (starRaw < 1 || starRaw > 13) {
+            channel.send('Star count must be between 1 and 13 inclusive');
+            return;
+        }
+
+        stars = starRaw;
+    }
+
+    if (args.length > 4) {
+        let factionRaw = args[4].toLowerCase();
+
+        if (!factions.includes(factionRaw)) {
+            channel.send(`No such faction ${factionRaw}`);
+            return;
+        }
+
+        fac = factionRaw;
+    }
+
     request({
         url: avatarURL,
         method: 'GET',
@@ -59,8 +90,8 @@ async function command(client, msg) {
         channel.send({
             files: [{
                 attachment: await buildHero({
-                    faction: faction(unique)
-                }, starCount(unique), false, await PI.decodePNGFromStream(aStream))
+                    faction: fac
+                }, stars, false, await PI.decodePNGFromStream(aStream))
             }]
         });
     });
@@ -68,6 +99,6 @@ async function command(client, msg) {
 
 module.exports = {
     name: 'fakehero',
-    aliases: ['fakehero', 'buildhero'],
+    aliases: ['fakehero', 'buildhero', 'makehero'],
     command
 };
