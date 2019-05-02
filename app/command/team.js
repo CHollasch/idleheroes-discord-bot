@@ -60,7 +60,7 @@ module.exports = {
     aliases: ['t', 'buildteam', 'setup', 'layout', 'defense', 'offense'],
     command: async (client, msg) => {
         const channel = msg.channel;
-        const argv = msg.content.split(/ /);
+        const argv = msg.content.split(/ +/);
 
         if (argv.length > 2 && argv[2] === 'help' || argv[2] === 'h') {
             const embed = new RichEmbed()

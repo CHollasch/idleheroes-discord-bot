@@ -19,7 +19,7 @@ function getSub(name) {
 
 function command(client, msg) {
     const channel = msg.channel;
-    const argv = msg.content.split(/ /g);
+    const argv = msg.content.split(/ +/g);
 
     if (argv.length < 3) {
         channel.send('Needs lookup mode. Types ``(hero/tier/vip/event/artifact/aura/guildboss/gear/skin/stone/brokenspace)``');

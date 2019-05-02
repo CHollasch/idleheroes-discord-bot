@@ -9,8 +9,8 @@ const config = require('../../config');
 module.exports = (client, msg) => {
     const contents = msg.content;
 
-    if (config.commandPrefixes.includes(contents.split(/ /)[0].toLowerCase())) {
-        const argv = contents.split(' ');
+    if (config.commandPrefixes.includes(contents.split(/ +/)[0].toLowerCase())) {
+        const argv = contents.split(/ +/g);
 
         if (argv.length <= 1) {
             return;
