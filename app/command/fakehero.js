@@ -45,7 +45,7 @@ function tryArg(arg, channel, options) {
 
 async function command(client, msg) {
     const channel = msg.channel;
-    const args = msg.content.split(' ');
+    const args = msg.content.split(/ +/g);
 
     if (msg.mentions.users.array().length === 0) {
         channel.send('Please mention a user');
