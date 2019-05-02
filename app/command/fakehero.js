@@ -29,8 +29,8 @@ function tryArg(arg, channel, options) {
         factionRaw = findFaction(factionRaw);
 
         if (factionRaw.flagged) {
-            channel.send(`I'm unsure about that... Did you mean '*${factionRaw.found}*'`);
-            return;
+            channel.send(`I'm unsure about '*${arg}*'... Did you mean '*${factionRaw.found}*'`);
+            return false;
         }
 
         options.faction = factionRaw.found;
@@ -39,6 +39,8 @@ function tryArg(arg, channel, options) {
         starRaw = Math.min(Math.max(starRaw, 1), 13);
         options.stars = starRaw;
     }
+
+    return true;
 }
 
 async function command(client, msg) {
@@ -63,11 +65,12 @@ async function command(client, msg) {
     let fac = faction(unique);
     const options = {faction: fac, stars};
 
-    if (args.length > 3) {
-        tryArg(args[3], channel, options);
-    }
-    if (args.length > 4) {
-        tryArg(args[4], channel, options);
+    for (let i = 3; i <= 4; ++i) {
+        if (args.length > i) {
+            if (!tryArg(args[i], channel, options)) {
+                return;
+            }
+        }
     }
 
     fac = options.faction;
