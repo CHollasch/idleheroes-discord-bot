@@ -156,7 +156,7 @@ const heroes = {
                     ability: [
                         '**Uncanny Blade** - Deal (**132% of Attack**) damage against 2 random enemies and (**60% of Attack**) extra damage each round for 2 rounds. If the target is a Ranger, then increase extra damage by **32%** each round.',
                         '**Rain Blood** - Each attack has a **100%** chance to bleed the target, dealing(**25% of attack**) damage each round for 4 rounds and gains **+11.2%** Armor Break for 4 rounds.',
-                        '**Carnage Heart** - Increases Precision by **20%**, Attack by **20%**, Armor Break by **24%**, HP by **10%**, dealing extra [60% of Attack] damage on bleeding foes.',
+                        '**Carnage Heart** - Increases Precision by **20%**, Attack by **20%**, Armor Break by **24%**, HP by **10%**, dealing extra [**60% of Attack**] damage on bleeding foes.',
                         '**Life Drain** - Whenever an enemy Hero dies, heals self for (**80% of Attack**) HP.'
                     ]
                 },
@@ -169,7 +169,7 @@ const heroes = {
                     ability: [
                         '**Uncanny Blade** - Deal (**128% of Attack**) damage against 3 random enemies and (**100% of Attack**) extra damage each round for 2 rounds. If the target is a Ranger, then increase extra damage by **48%** each round.',
                         '**Rain Blood II** - Each attack has a **100%** chance to bleed the target, dealing(**35% of attack**) damage each round for 4 rounds and gains **+14%** Armor Break for 4 rounds.',
-                        '**Carnage Heart II** - Increases Precision by **35%**, Attack by **25%**, Armor Break by **28%**, HP by **15%**,dealing extra [100% of Attack] damage on bleeding foes.',
+                        '**Carnage Heart II** - Increases Precision by **35%**, Attack by **25%**, Armor Break by **28%**, HP by **15%**,dealing extra [**100% of Attack**] damage on bleeding foes.',
                         '**Life Drain II** - Whenever an enemy Hero dies, heals self for (**120% of Attack**) HP.'
                     ]
                 },
@@ -182,7 +182,7 @@ const heroes = {
                     ability: [
                         '**Uncanny Blade** - Deal (**188% of Attack**) damage against 3 random enemies and (**140% of Attack**) extra damage each round for 2 rounds. If the target is a Ranger, then increase extra damage by **95%** each round. Heal self for (**240% of Attack**) HP.',
                         '**Rain Blood III** - Each attack has a **100%** chance to bleed the target, dealing(**45% of attack**) damage each round for 4 rounds and gains **+16.8%** Armor Break for 4 rounds.',
-                        '**Carnage Heart III** - Increases Precision by **50%**, Attack by **30%**, Armor Break by **32%**, HP by **30%**,dealing extra [140% of Attack] damage on bleeding foes.',
+                        '**Carnage Heart III** - Increases Precision by **50%**, Attack by **30%**, Armor Break by **32%**, HP by **30%**,dealing extra [**140% of Attack**] damage on bleeding foes.',
                         '**Life Drain III** - Whenever an enemy Hero dies, heals self for (**240% of Attack**) HP.'
                     ]
                 },
@@ -205,28 +205,43 @@ const heroes = {
             ],
             level: {
                 5: {
-                    power: 0,
-                    health: 0,
-                    attack: 0,
-                    armor: 0,
-                    speed: 0,
-                    ability: []
+                    power: 7788,
+                    health: 36624,
+                    attack: 2092,
+                    armor: 610,
+                    speed: 601,
+                    ability: [
+                        '**Fury of Iciness** - Deals [**122% of Attack**] damage against the front-line enemies and has a **40%** chance to freeze them for 2 rounds, heals self for **10%** of total HP.',
+                        '**Realm of Frost** - When taking damage by the non-warrior target, has a **10%** chance to freeze the target for 2 rounds. When taking damage by the warrior target, has a **20%** chance to freeze the target for 2 rounds.',
+                        '**Winter is coming** - Increases Block by **15%**, HP by **20%** and Armor by **15%**, gain freeze immune.',
+                        '**Absolute zero** - While below **50%** health, heals self for [**240% of Attack**] HP for 3 rounds continuously. (**Can only trigger once**).',
+                    ]
                 },
                 6: {
-                    power: 0,
-                    health: 0,
-                    attack: 0,
-                    armor: 0,
-                    speed: 0,
-                    ability: []
+                    power: 19018,
+                    health: 104531,
+                    attack: 4753,
+                    armor: 864,
+                    speed: 806,
+                    ability: [
+                        '**Fury of Iciness** - Deals [**155% of Attack**] damage against the front-line enemies and has a **55%** chance to freeze them for 2 rounds, heals self for **15%** of total HP.',
+                        '**Realm of Frost II** - When taking damage by the non-warrior target, has a **15%** chance to freeze the target for 2 rounds. When taking damage by the warrior target, has a **27%** chance to freeze the target for 2 rounds.',
+                        '**Winter is coming II** - Increases Block by **25%**, HP by **30%**, gain freeze immune.',
+                        '**Absolute zero II** - While below **50%** health, heals self for [**340% of Attack**] HP for 3 rounds continuously. (**Can only trigger once**).',
+                    ]
                 },
                 10: {
-                    power: 0,
-                    health: 0,
-                    attack: 0,
-                    armor: 0,
-                    speed: 0,
-                    ability: []
+                    power: 112925,
+                    health: 808648,
+                    attack: 15156,
+                    armor: 1502,
+                    speed: 1158,
+                    ability: [
+                        '**Fury of Iciness** - Deals [**184% of Attack**] damage to front-line enemies and has a **70%** chance to freeze them for 2 rounds, heals self for (**26% of total HP**) HP.',
+                        '**Realm of Frost III** - When taking damage by the non-warrior target, has a **20%** chance to freeze the target for 2 rounds. When taking damage by the warrior target, has a **35%** chance to freeze the target for 2 rounds.',
+                        '**Winter is coming III** - Increases Block by **35%**, HP by **40%**, gain freeze immune.',
+                        '**Absolute zero III** - While below **50%** health, heals self for [**20% of total HP**] HP for 3 rounds. (**Can only trigger once**).',
+                    ]
                 },
             }
         },

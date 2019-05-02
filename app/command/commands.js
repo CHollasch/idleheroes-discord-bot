@@ -1,6 +1,7 @@
 const commands = [
     cmd('lookup/runner'),
-    cmd('team')
+    cmd('team'),
+    cmd('fakehero')
 ];
 
 const config = require('../../config');

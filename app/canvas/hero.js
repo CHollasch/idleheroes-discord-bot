@@ -176,7 +176,7 @@ async function smartFindHero(hero, stars) {
     return await readImage(`${path}/${Math.floor(using)}.png`);
 }
 
-async function buildHero(hero, stars, inline = false) {
+async function buildHero(hero, stars, inline = false, heroImageCustom = null) {
     // Clamp stars from 1 to 13 stars.
     if (stars < 1) {
         stars = 1;
@@ -189,7 +189,13 @@ async function buildHero(hero, stars, inline = false) {
 
     const star = starLookup[stars];
 
-    const heroImage = await smartFindHero(hero, stars);
+    let heroImage;
+    if (heroImageCustom) {
+        heroImage = heroImageCustom;
+    } else {
+        heroImage = await smartFindHero(hero, stars);
+    }
+
     ctx.drawImage(heroImage, 0, 0, heroImage.width, heroImage.height, 0, 0, img.width, img.height);
 
     const alphaMask = await readImage('./assets/heroes/builder/transparentEdgeMask.png');
