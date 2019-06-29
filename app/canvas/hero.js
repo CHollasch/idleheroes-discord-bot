@@ -151,7 +151,9 @@ const starLookup = {
     },
     11: {file: '10.png', placement: [{file: 'e1.png', location: [20, 120], size: [134, 46]}]},
     12: {file: '10.png', placement: [{file: 'e2.png', location: [20, 120], size: [134, 46]}]},
-    13: {file: '10.png', placement: [{file: 'e3.png', location: [20, 120], size: [134, 46]}]}
+    13: {file: '10.png', placement: [{file: 'e3.png', location: [20, 120], size: [134, 46]}]},
+    14: {file: '10.png', placement: [{file: 'e4.png', location: [20, 120], size: [134, 46]}]},
+    15: {file: '10.png', placement: [{file: 'e5.png', location: [20, 120], size: [134, 46]}]},
 };
 
 async function smartFindHero(hero, stars) {
@@ -180,8 +182,8 @@ async function buildHero(hero, stars, inline = false, heroImageCustom = null) {
     // Clamp stars from 1 to 13 stars.
     if (stars < 1) {
         stars = 1;
-    } else if (stars > 13) {
-        stars = 13;
+    } else if (stars > 15) {
+        stars = 15;
     }
 
     const img = PI.make(175, 175, {});

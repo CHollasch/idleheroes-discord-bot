@@ -36,7 +36,7 @@ function tryArg(arg, channel, options) {
         options.faction = factionRaw.found;
     } else {
         let starRaw = parseInt(arg);
-        starRaw = Math.min(Math.max(starRaw, 1), 13);
+        starRaw = Math.min(Math.max(starRaw, 1), 15);
         options.stars = starRaw;
     }
 
