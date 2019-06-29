@@ -60,7 +60,9 @@ const heroes = {
     belrain: ['belrain'],
     'faith-blade': ['faith blade', 'fb'],
     gerke: ['gerke'],
-    michelle: ['michelle']
+    michelle: ['michelle'],
+    penny: ['penny', 'panny', 'peny', 'peggy'],
+    'amen-ra': ['amen ra', 'amen-ra', 'ama ra', 'ar', 'amenra']
 };
 
 const tiers = {

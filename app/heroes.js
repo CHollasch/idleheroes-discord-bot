@@ -2352,6 +2352,54 @@ const heroes = {
                 },
             }
         },
+        penny: {
+            name: 'Penny',
+            faction: 'fortress',
+            role: 'Ranger',
+            pve: 8.2,
+            pvp: 8.3,
+            tier: 2,
+            builds: [
+                {
+                    stone: 'Attack (%) / Crit (%) / Crit Dmg (%)',
+                    artifact: ['Punisher of Immortal'],
+                    slot: [2],
+                    weight: 43
+                },
+                {
+                    stone: 'Attack (%) / Crit (%) / Crit Dmg (%)',
+                    artifact: ['Eye of Hell', 'Yubashiri', 'Eternal Chapter', 'Flying Thor'],
+                    slot: [3],
+                    weight: 6
+                }
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
+        }
     },
     dark: {
         amuvor: {
@@ -2624,6 +2672,54 @@ const heroes = {
                 },
             }
         },
+        'amen-ra': {
+            name: 'Amen-Ra',
+            faction: 'dark',
+            role: 'Priest',
+            pve: 8.0,
+            pvp: 9.5,
+            tier: 0,
+            builds: [
+                {
+                    stone: 'Speed / HP (%)',
+                    artifact: ['Magic Source', 'Orb of Annihilation'],
+                    slot: [2],
+                    weight: 17
+                },
+                {
+                    stone: 'Speed / HP (%)',
+                    artifact: ['Augustus Magic Ball'],
+                    slot: [4, 5, 6],
+                    weight: 4
+                }
+            ],
+            level: {
+                5: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                6: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+                10: {
+                    power: 0,
+                    health: 0,
+                    attack: 0,
+                    armor: 0,
+                    speed: 0,
+                    ability: []
+                },
+            }
+        }
     },
     light: {
         aida: {
